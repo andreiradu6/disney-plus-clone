@@ -1,35 +1,38 @@
 import React from 'react'
 import styled  from 'styled-components'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <Nav>
-            <Logo src="/images/logo.svg"/>
+            <Link to='/'>
+                <Logo src="/images/logo.svg"/>
+            </Link>
             <NavMenu>
-                <a>
+                <Link to='/' className="link">
                     <img src="/images/home-icon.svg"/>
                     <span>HOME</span>
-                </a>
-                <a>
+                </Link>
+                <Link to='/search'>
                     <img src="/images/search-icon.svg"/>
                     <span>SEARCH</span>
-                </a>
-                <a>
+                </Link>
+                <Link to='/watchlist'>
                     <img src="/images/watchlist-icon.svg"/>
                     <span>WATCHLIST</span>
-                </a>
-                <a>
+                </Link>
+                <Link to='/originals'>
                     <img src="/images/original-icon.svg"/>
                     <span>ORIGINALS</span>
-                </a>
-                <a>
+                </Link>
+                <Link to='/movies'>
                     <img src="/images/movie-icon.svg"/>
                     <span>MOVIES</span>
-                </a>
-                <a>
+                </Link>
+                <Link to='/series'>
                     <img src="/images/series-icon.svg"/>
                     <span>SERIES</span>
-                </a>
+                </Link>
             </NavMenu>
             <UserImg src="/images/slider-badging.jpg"/>
         </Nav>
@@ -53,12 +56,16 @@ const Logo = styled.img`
 `
 
 const NavMenu = styled.div`
+
+
     display:flex;
     flex: 1;
     margin-left: 25px;
     align-items:center;
 
-    a{  
+    a,Link{
+        text-decoration:none;
+        color: #fff;  
         cursor:pointer;
         display:flex;
         align-items:center;

@@ -1,10 +1,41 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import styled from 'styled-components'
 import Detail from './Detail'
 import ImageSlider from './ImageSlider'
 import Movies from './Movies'
 import Viewers from './Viewers'
+import {useDispatch} from 'react-redux';
+import { setMovies, setmovies } from '../features/movie/movieSlice';
+
+
 function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const url = 'https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate';
+        
+
+        const getMovies = async (url) => {
+          let response = await fetch(url);
+          let data = await response.json();
+          let tempMovies = data.results.map((movie) => {
+            return {
+              id: movie.id,
+              poster_path: movie.poster_path,
+              backdrop_path: movie.backdrop_path,
+              title: movie.title,
+              description: movie.overview,
+            };
+          });
+
+          dispatch(setMovies(tempMovies));
+        };
+
+        getMovies(url);
+        
+    },[])
+    
+
     return (
         <Container>
             <ImageSlider />
