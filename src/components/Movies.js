@@ -1,42 +1,51 @@
 import React from 'react'
 import styled from 'styled-components'
+import {selectMovies} from '../features/movie/movieSlice'; 
+import {useSelector} from 'react-redux';
 
 function Movies() {
+    const IMGPATH = "https://image.tmdb.org/t/p/w1280";
+    const movies = useSelector(selectMovies);
+
+    console.log('this are movies', movies);
+
     return (
-        <Container>
-            <h4>
-                Recommended for You
-            </h4>
-            <Content>   
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-            </Content>
-            <Content>   
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-                <Wrap>
-                    <img src="/images/login-background.jpg" alt="movie image"/>
-                </Wrap>
-            </Content>
-        </Container>
-    )
+      <Container>
+        <h4>Recommended for You</h4>
+        <Content>
+          {movies &&
+            movies.map((movie) => (
+              <Wrap key={movie.id}>
+                <img src={IMGPATH + movie.poster_path} alt="movie image" />
+              </Wrap>
+            ))}
+
+          {/* <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+        </Content>
+        <Content>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap>
+          <Wrap>
+            <img src="/images/login-background.jpg" alt="movie image" />
+          </Wrap> */}
+        </Content>
+      </Container>
+    );
 }
 
 export default Movies
